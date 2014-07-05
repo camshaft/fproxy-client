@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var server = require('../');
+
+program
+  .usage('[options] <host>')
+  .option('-p, --port', 'listening port', '41513')
+  .parse(process.argv);
+
+var host = program.args[program.args.length - 1];
+
+server(host)
+  .listen(parseInt(program.port, 10));
