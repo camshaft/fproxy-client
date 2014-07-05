@@ -5,10 +5,12 @@ var server = require('../');
 
 program
   .usage('[options] <host>')
-  .option('-p, --port', 'listening port', '41513')
+  .option('-p, --port <port>', 'listening port', '41513')
   .parse(process.argv);
 
-var host = program.args[program.args.length - 1];
+var host = program.args[0];
+var port = parseInt(program.port, 10);
 
-server(host)
-  .listen(parseInt(program.port, 10));
+server(host).listen(port);
+
+console.log(port, '->', host);
